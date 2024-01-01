@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  pwpo-postgres:
+    image: "postgres:14-alpine"
+    container_name: pwpo-postgres
+    volumes:
+      - pwpo-db-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=pwpo
+      - POSTGRES_USER=pwpo_user
+      - POSTGRES_PASSWORD=pwpo_password
+
+  pwpo-service:
+    build: ./backend
+    container_name: pwpo-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://pwpo-postgres/pwpo
+      - SPRING_DATASOURCE_USERNAME=pwpo_user
+      - SPRING_DATASOURCE_PASSWORD=pwpo_password
+    ports:
+      - 8081:8081
+    links:
+      - pwpo-postgres
+
+  pwpo-facade:
+    build: ./frontend
+    container_name: pwpo-facade
+    ports:
+      - 4200:80
+    links:
+      - pwpo-service
+
+volumes:
+  pwpo-db-data:

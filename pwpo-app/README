@@ -1,0 +1,9 @@
+-pwpo-app:
+-----backend:
+----------bervan-utils
+----------pwpo-service
+-----frontend:
+----------pwpo-facade
+
+docker-compose build
+docker-compose up --force-recreate
