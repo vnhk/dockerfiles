@@ -1,14 +1,14 @@
-FROM node:18.16.0 as builder
+FROM node:20.9.0 as builder
 
 WORKDIR /app
 
-COPY pwpo-facade/package.json pwpo-facade/package-lock.json ./
+COPY ./pwpo-facade .
+
+RUN rm -rf ./node_modules
 
 RUN npm install
 
-COPY ./pwpo-facade .
-
-RUN npm run build --configuration=production
+RUN npm run build:production
 
 FROM nginx:1.15.8-alpine
 
