@@ -1,31 +1,34 @@
-version: '3'
+version: '3.8'
 
 services:
   my-tools-mariadb:
-    image: "mariadb"
+    image: mariadb:latest
     container_name: my-tools-mariadb
     volumes:
       - my-tools-db-data:/var/lib/mysql
-    ports:
-      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: my-tools-db
       MYSQL_USER: my_tools_user
       MYSQL_PASSWORD: my_tools_user
+    ports:
+      - 3500:3500
 
   my-tools-app:
     build: ./backend
     container_name: my-tools-app
+    volumes:
+      - my-tools-storage-data:/app/file-service/storage
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mariadb://localhost:3306/my-tools-db
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://my-tools-mariadb/my-tools-db
       - SPRING_DATASOURCE_USERNAME=my_tools_user
       - SPRING_DATASOURCE_PASSWORD=my_tools_user
-      - FILE_SERVICE_STORAGE_FOLDER=/file-service/storage/
+      - FILE_SERVICE_STORAGE_FOLDER=/app/file-service/storage
     ports:
-      - 8081:8081
-    links:
+      - 8091:8081
+    depends_on:
       - my-tools-mariadb
 
 volumes:
   my-tools-db-data:
+  my-tools-storage-data:

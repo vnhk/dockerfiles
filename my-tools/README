@@ -1,4 +1,6 @@
 Change credentials before running
 
+mvn clean package -Pproduction
+
 docker-compose build
 docker-compose up --force-recreate
