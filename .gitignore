@@ -1,3 +1,8 @@
-/pwpo-app/frontend/pwpo-facade
-/pwpo-app/backend/pwpo-service
-/pwpo-app/backend/bervan-utils
+/pwpo-app/frontend/pwpo-facade/
+/pwpo-app/backend/pwpo-service/
+/pwpo-app/backend/bervan-utils/
+
+/my-tools/backend/my-apps/
+/my-tools/backend/my-apps/bervan-utils
+
+.idea
