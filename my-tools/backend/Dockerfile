@@ -2,7 +2,7 @@ ARG APP_SERVICE_VERSION='1.0-SNAPSHOT'
 ARG IE_ENTITIES_VERSION='2.0.2'
 ARG HISTORY_TABLES_CORE_VERSION='2.0.0'
 
-FROM maven:3-amazoncorretto-21 AS builder
+FROM maven:3.9.2 AS builder
 
 WORKDIR /app
 
@@ -21,19 +21,19 @@ RUN mvn install:install-file -Dfile=./bervan-utils/ie-entities/target/ie-entitie
 
 COPY code/my-tools ./my-tools
 
-RUN mvn -f='./my-tools/common-vaadin' install -DskipTests
+RUN mvn -f='./my-tools/common-vaadin' clean install -DskipTests
 
-RUN mvn -f='./my-tools/file-storage-app' install -DskipTests
+RUN mvn -f='./my-tools/file-storage-app' clean install -DskipTests
 
-RUN mvn -f='./my-tools/english-text-stats-app' install -DskipTests
+RUN mvn -f='./my-tools/english-text-stats-app' clean install -DskipTests
 
-RUN mvn -f='./my-tools/interview-app' install -DskipTests
+RUN mvn -f='./my-tools/learning-language-app' clean install -DskipTests
 
-RUN mvn -f='./my-tools/learning-language-app' install -DskipTests
+RUN mvn -f='./my-tools/interview-app' clean install -DskipTests
 
 RUN mvn -f='./my-tools/my-tools-vaadin-app' -Pproduction install -DskipTests
 
-FROM openjdk:21-oracle AS runtime
+FROM openjdk:23-jdk AS runtime
 
 WORKDIR /app
 
