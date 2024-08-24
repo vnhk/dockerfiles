@@ -33,7 +33,7 @@ RUN mvn -f='./my-tools/interview-app' clean install -DskipTests
 
 RUN mvn -f='./my-tools/my-tools-vaadin-app' -Pproduction install -DskipTests
 
-FROM openjdk:23-jdk AS runtime
+FROM openjdk:17 AS runtime
 
 WORKDIR /app
 
