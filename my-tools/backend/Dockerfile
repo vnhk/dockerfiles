@@ -21,6 +21,8 @@ RUN mvn install:install-file -Dfile=./bervan-utils/ie-entities/target/ie-entitie
 
 COPY code/my-tools ./my-tools
 
+RUN mvn -q -ntp -B -pl dto-core -am dependency:go-offline
+
 RUN mvn -f='./my-tools/common-vaadin' clean install -DskipTests -U
 
 RUN mvn -f='./my-tools/file-storage-app' clean install -DskipTests -U
