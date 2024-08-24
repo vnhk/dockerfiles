@@ -21,17 +21,19 @@ RUN mvn install:install-file -Dfile=./bervan-utils/ie-entities/target/ie-entitie
 
 COPY code/my-tools ./my-tools
 
-RUN mvn -f='./my-tools/common-vaadin' clean install -DskipTests
+RUN mvn -f='./my-tools/common-vaadin' clean install -DskipTests -U
 
-RUN mvn -f='./my-tools/file-storage-app' clean install -DskipTests
+RUN mvn -f='./my-tools/file-storage-app' clean install -DskipTests -U
 
-RUN mvn -f='./my-tools/english-text-stats-app' clean install -DskipTests
+RUN mvn -f='./my-tools/english-text-stats-app' clean install -DskipTests -U
 
-RUN mvn -f='./my-tools/learning-language-app' clean install -DskipTests
+RUN mvn -f='./my-tools/learning-language-app' clean install -DskipTests -U
 
-RUN mvn -f='./my-tools/interview-app' clean install -DskipTests
+RUN rm -rf ~/.m2/repository/com/google/guava/guava/33.2.1-jre
 
-RUN mvn -f='./my-tools/my-tools-vaadin-app' -Pproduction install -DskipTests
+RUN mvn -f='./my-tools/interview-app' clean install -DskipTests -U
+
+RUN mvn -f='./my-tools/my-tools-vaadin-app' -Pproduction install -DskipTests -U
 
 FROM openjdk:17 AS runtime
 
