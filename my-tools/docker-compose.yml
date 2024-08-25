@@ -16,11 +16,12 @@ services:
     build: ./backend
     container_name: my-tools-app
     volumes:
-      - my-tools-storage-data:${FILE_SERVICE_STORAGE_FOLDER}
+      - ${FILE_SERVICE_STORAGE_FOLDER_HOST}:/app/file-service/storage
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mariadb://my-tools-mariadb/my-tools-db
       - SPRING_DATASOURCE_USERNAME=my_tools_user
       - SPRING_DATASOURCE_PASSWORD=my_tools_user
+      - FILE_SERVICE_STORAGE_FOLDER=/app/file-service/storage
     ports:
       - 8091:8081
     depends_on:
