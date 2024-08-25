@@ -21,7 +21,7 @@ RUN mvn install:install-file -Dfile=./bervan-utils/ie-entities/target/ie-entitie
 
 COPY code/my-tools ./my-tools
 
-COPY code/config/configuration.json /app/configuration/configuration.json
+COPY code/config/configuration.json ./configuration/configuration.json
 
 RUN mvn -f='./my-tools/common-vaadin' clean install -DskipTests -U
 
