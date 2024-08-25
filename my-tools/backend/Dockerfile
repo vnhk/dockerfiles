@@ -44,6 +44,5 @@ WORKDIR /app
 ARG APP_SERVICE_VERSION
 
 COPY --from=builder /app/my-tools/my-tools-vaadin-app/target/my-tools-vaadin-app-${APP_SERVICE_VERSION}.jar ./my-tools-vaadin-app.jar
-#EXPOSE 8081
 
 CMD ["java", "-jar", "-Dspring.profiles.active=production", "my-tools-vaadin-app.jar"]
