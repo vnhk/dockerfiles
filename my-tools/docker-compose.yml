@@ -22,6 +22,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=my_tools_user
       - SPRING_DATASOURCE_PASSWORD=my_tools_user
       - FILE_SERVICE_STORAGE_FOLDER=/app/file-service/storage
+      - TRANSLATION_GOOGLE_API_KEY=${TRANSLATION_GOOGLE_API_KEY}
     ports:
       - 8091:8081
     depends_on:
