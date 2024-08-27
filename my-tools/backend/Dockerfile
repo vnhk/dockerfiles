@@ -23,6 +23,8 @@ COPY code/my-tools ./my-tools
 
 COPY code/config/configuration.json ./configuration/configuration.json
 
+RUN rm -rf ~/.m2/repository/
+
 RUN mvn -f='./my-tools/common-vaadin' clean install -DskipTests -U
 
 RUN mvn -f='./my-tools/file-storage-app' clean install -DskipTests -U
@@ -30,8 +32,6 @@ RUN mvn -f='./my-tools/file-storage-app' clean install -DskipTests -U
 RUN mvn -f='./my-tools/english-text-stats-app' clean install -DskipTests -U
 
 RUN mvn -f='./my-tools/learning-language-app' clean install -DskipTests -U
-
-RUN rm -rf ~/.m2/repository/com/google/guava/guava/33.2.1-jre
 
 RUN mvn -f='./my-tools/interview-app' clean install -DskipTests -U
 
