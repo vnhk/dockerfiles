@@ -8,6 +8,8 @@ WORKDIR /app
 
 COPY code/bervan-utils ./bervan-utils
 
+RUN rm -rf ~/.m2/repository/
+
 RUN mvn -f='./bervan-utils/history-tables-core' install -DskipTests
 RUN mvn -f='./bervan-utils/ie-entities' install -DskipTests
 
@@ -22,8 +24,6 @@ RUN mvn install:install-file -Dfile=./bervan-utils/ie-entities/target/ie-entitie
 COPY code/my-tools ./my-tools
 
 COPY code/config/configuration.json ./configuration/configuration.json
-
-RUN rm -rf ~/.m2/repository/
 
 RUN mvn -f='./my-tools/common-vaadin' clean install -DskipTests -U
 
