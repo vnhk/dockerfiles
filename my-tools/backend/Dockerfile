@@ -17,7 +17,7 @@ RUN mvn -f='./bervan-utils/ie-entities' install -DskipTests
 
 ARG CORE_VERSION
 
-RUN mvn install:install-file -Dfile=./bervan-utils/core/target/core-${HISTORY_TABLES_CORE_VERSION}.jar -Dpackaging=jar -DgroupId=com.bervan -DartifactId=core -Dversion=${CORE_VERSION}
+RUN mvn install:install-file -Dfile=./bervan-utils/core/target/core-${CORE_VERSION}.jar -Dpackaging=jar -DgroupId=com.bervan -DartifactId=core -Dversion=${CORE_VERSION}
 
 ARG HISTORY_TABLES_CORE_VERSION
 
