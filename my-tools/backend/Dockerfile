@@ -35,7 +35,7 @@ RUN mvn -f='./my-tools/learning-language-app' clean install -DskipTests -U
 
 RUN mvn -f='./my-tools/interview-app' clean install -DskipTests -U
 
-RUN mvn -f='./my-tools/my-tools-vaadin-app' -Pproduction install -DskipTests -U
+RUN mvn -f='./my-tools/my-tools-vaadin-app' clean -Pproduction install -DskipTests -U
 
 FROM openjdk:17 AS runtime
 
