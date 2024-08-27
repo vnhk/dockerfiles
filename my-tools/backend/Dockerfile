@@ -1,6 +1,7 @@
 ARG APP_SERVICE_VERSION='1.0-SNAPSHOT'
 ARG IE_ENTITIES_VERSION='2.0.2'
 ARG HISTORY_TABLES_CORE_VERSION='2.0.0'
+ARG CORE_VERSION='2.0.0'
 
 FROM maven:3.8.5-openjdk-17 AS builder
 
@@ -10,8 +11,13 @@ COPY code/bervan-utils ./bervan-utils
 
 RUN rm -rf ~/.m2/repository/
 
+RUN mvn -f='./bervan-utils/core' install -DskipTests
 RUN mvn -f='./bervan-utils/history-tables-core' install -DskipTests
 RUN mvn -f='./bervan-utils/ie-entities' install -DskipTests
+
+ARG CORE_VERSION
+
+RUN mvn install:install-file -Dfile=./bervan-utils/core/target/core-${HISTORY_TABLES_CORE_VERSION}.jar -Dpackaging=jar -DgroupId=com.bervan -DartifactId=core -Dversion=${CORE_VERSION}
 
 ARG HISTORY_TABLES_CORE_VERSION
 
