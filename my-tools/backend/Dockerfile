@@ -33,6 +33,8 @@ COPY code/config/configuration.json ./configuration/configuration.json
 
 RUN mvn -f='./my-tools/common-vaadin' clean install -DskipTests -U
 
+RUN mvn -f='./my-tools/shopping-stats-server-app' clean install -DskipTests -U
+
 RUN mvn -f='./my-tools/file-storage-app' clean install -DskipTests -U
 
 RUN mvn -f='./my-tools/english-text-stats-app' clean install -DskipTests -U
