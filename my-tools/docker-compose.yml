@@ -49,7 +49,7 @@ services:
       # Make it small
       - GZIP_LEVEL=9
       # As of MySQL 8.0.21 this is needed
-      - MYSQLDUMP_OPTS=--no-tablespaces
+      - MYSQLDUMP_OPTS=--no-tablespaces --complete-insert --no-create-info --skip-add-drop-table --skip-triggers
     restart: unless-stopped
 
 volumes:
