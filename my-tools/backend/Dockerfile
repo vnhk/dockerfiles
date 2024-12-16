@@ -47,6 +47,8 @@ RUN mvn -f='./my-tools/spreadsheet-app' clean install -DskipTests -U
 
 RUN mvn -f='./my-tools/interview-app' clean install -DskipTests -U
 
+RUN mvn -f='./my-tools/canvas-app' clean install -DskipTests -U
+
 RUN mvn -f='./my-tools/my-tools-vaadin-app' clean -Pproduction install -DskipTests -U
 
 FROM openjdk:17 AS runtime
