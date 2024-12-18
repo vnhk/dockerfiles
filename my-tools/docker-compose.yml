@@ -17,6 +17,7 @@ services:
     container_name: my-tools-app
     volumes:
       - ${FILE_SERVICE_STORAGE_FOLDER_HOST}:/app/file-service/storage
+      - ${KEYSTORE_PATH_HOST}:/path/to/keystore:/keystore
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mariadb://my-tools-mariadb/${MARIA_DB_NAME}
       - SPRING_DATASOURCE_USERNAME=${MARIA_DB_USER_NAME}
@@ -29,7 +30,7 @@ services:
       - GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
       - APP_ACCESS_API_KEYS=${APP_ACCESS_API_KEYS}
       - APP_ACCESS_API_KEYS_USERNAMES=${APP_ACCESS_API_KEYS_USERNAMES}
-      - KEYSTORE_PATH=${KEYSTORE_PATH}
+      - KEYSTORE_PATH=/keystore/keystore.p12
       - KEYSTORE_PASSWORD=${KEYSTORE_PASSWORD}
     ports:
       - 8091:8081
