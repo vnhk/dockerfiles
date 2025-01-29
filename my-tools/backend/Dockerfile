@@ -47,6 +47,8 @@ RUN mvn -f='./my-tools/spreadsheet-app' clean install -DskipTests -U
 
 RUN mvn -f='./my-tools/interview-app' clean install -DskipTests -U
 
+RUN mvn -f='./my-tools/project-mgmt-app' clean install -DskipTests -U
+
 RUN mvn -f='./my-tools/canvas-app' clean install -DskipTests -U
 
 RUN mvn -f='./my-tools/streaming-platform-app' clean install -DskipTests -U
